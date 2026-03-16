@@ -377,9 +377,9 @@ section { padding: 100px 80px; }
 
 .section-tag {
   display: inline-block;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--green2);
   margin-bottom: 16px;
@@ -463,7 +463,7 @@ section { padding: 100px 80px; }
 }
 
 /* ==================== SERVICES ==================== */
-.services-section { background: var(--dark); }
+.services-section { background: var(--bg-main); }
 .services-header { margin-bottom: 60px; }
 
 .services-grid {
@@ -472,71 +472,93 @@ section { padding: 100px 80px; }
   gap: 22px;
 }
 .service-card {
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(59,170,59,0.1);
+  background: var(--bg-sub);
+  border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 34px 26px;
   position: relative;
   overflow: hidden;
   transition: all 0.35s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
 }
 .service-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3px;
+  height: 4px;
   background: linear-gradient(90deg, var(--green), var(--yellow));
   transform: scaleX(0);
   transition: transform 0.35s;
   transform-origin: left;
+  z-index: 2;
 }
 .service-card:hover::before { transform: scaleX(1); }
 .service-card:hover {
-  background: rgba(59,170,59,0.06);
-  border-color: rgba(59,170,59,0.3);
   transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.svc-img-wrap {
+  width: 100%;
+  height: 180px;
+  /* 画像の背景色に馴染むように薄いグレー〜白の背景色を設定。
+     画像によっては transparent が良い場合もあります */
+  background: #fdfdfd; 
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px; /* 画像の周りに少し余白を持たせる */
+}
+.svc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* coverからcontainへ変更：画像全体が切られずに表示されます */
+}
+.svc-content {
+  padding: 24px 26px 34px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .svc-patent {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: rgba(200,212,0,0.12);
+  background: rgba(200,212,0,0.15);
   border: 1px solid rgba(200,212,0,0.3);
-  color: var(--yellow2);
+  color: #8C9400;
   font-size: 10px;
   font-weight: 700;
   padding: 3px 10px;
   border-radius: 4px;
-  margin-bottom: 20px;
-  letter-spacing: 0.06em;
-}
-.svc-spacer { height: 26px; margin-bottom: 20px; }
-.svc-icon {
-  font-size: 44px;
-  margin-bottom: 18px;
-  display: block;
-  filter: drop-shadow(0 4px 12px rgba(59,170,59,0.3));
-}
-.svc-name-en {
-  font-family: 'Syne', sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  color: white;
-  letter-spacing: 0.03em;
-  margin-bottom: 4px;
-}
-.svc-name-ja {
-  font-size: 13px;
-  color: var(--green2);
-  font-weight: 500;
   margin-bottom: 16px;
+  letter-spacing: 0.06em;
+  align-self: flex-start;
+}
+.svc-spacer { height: 26px; margin-bottom: 16px; }
+
+.svc-name {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--green);
+  letter-spacing: 0.02em;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+.svc-name span {
+  font-size: 15px;
+  color: var(--text-main);
+  font-weight: 700;
+  display: inline-block;
+  margin-left: 2px;
 }
 .svc-desc {
   font-size: 14px;
-  color: rgba(255,255,255,0.52);
-  line-height: 1.85;
+  color: var(--text-sub);
   margin-bottom: 22px;
 }
 .svc-features {
@@ -777,15 +799,29 @@ section { padding: 100px 80px; }
 }
 .company-left { flex: 1.2; }
 .company-right { flex: 1; }
-.company-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 30px;
-  font-weight: 800;
-  margin-bottom: 8px;
+.company-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.company-name-wrap .logo-img {
+  height: 36px;
+}
+.company-name-wrap .logo-svg {
+  width: 66px;
+  height: 48px;
+}
+.company-name-text {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.04em;
 }
 .company-tagline {
   font-size: 14px;
-  color: var(--green2);
+  color: var(--green);
   margin-bottom: 20px;
   font-weight: 500;
 }
@@ -1017,40 +1053,49 @@ footer {
   </div>
   <div class="services-grid">
     <div class="service-card">
-      <div class="svc-patent">🏅 特許取得済み</div>
-      <span class="svc-icon">💊</span>
-      <div class="svc-name-en">PATTO-ENKAKUSAN</div>
-      <div class="svc-name-ja">パッと薬 遠隔さん</div>
-      <p class="svc-desc">自店舗に来局した患者さまに対し、他店舗の薬剤師が遠隔でオンライン服薬指導を行えるシステム。チェーン薬局の「人員の偏り」を解消します。</p>
-      <ul class="svc-features">
-        <li>他店舗薬剤師が遠隔で服薬指導を実施</li>
-        <li>チェーン薬局の人材リソースを最適配置</li>
-        <li>処方箋対応スピードの大幅な改善</li>
-      </ul>
+      <div class="svc-img-wrap">
+        <img src="パッと薬 遠隔さん.jpg" alt="パッと薬 遠隔さん" class="svc-img" onerror="this.src='https://via.placeholder.com/600x300?text=Image'">
+      </div>
+      <div class="svc-content">
+        <div class="svc-patent">🏅 特許取得済み</div>
+        <div class="svc-name">パッと薬 遠隔さん</div>
+        <p class="svc-desc">自店舗に来局した患者さまに対し、他店舗の薬剤師が遠隔でオンライン服薬指導を行えるシステム。チェーン薬局の「人員の偏り」を解消します。</p>
+        <ul class="svc-features">
+          <li>他店舗薬剤師が遠隔で服薬指導を実施</li>
+          <li>チェーン薬局の人材リソースを最適配置</li>
+          <li>処方箋対応スピードの大幅な改善</li>
+        </ul>
+      </div>
     </div>
     <div class="service-card">
-      <div class="svc-patent">🏅 特許取得済み</div>
-      <span class="svc-icon">📋</span>
-      <div class="svc-name-en">Pas-IS</div>
-      <div class="svc-name-ja">パシーズ ／ 処方箋遠隔入力</div>
-      <p class="svc-desc">チェーン薬局向け・処方箋遠隔入力サービス。薬剤師の入力業務を遠隔で分担し、現場スタッフが調剤に集中できる環境を実現。</p>
-      <ul class="svc-features">
-        <li>処方箋入力を遠隔で分担・効率化</li>
-        <li>入力ミスのリスクを低減</li>
-        <li>繁忙時間帯のオペレーション改善</li>
-      </ul>
+      <div class="svc-img-wrap">
+        <img src="パシーズ ／ 処方箋遠隔入力.jpg" alt="Pas-IS パシーズ" class="svc-img" onerror="this.src='https://via.placeholder.com/600x300?text=Image'">
+      </div>
+      <div class="svc-content">
+        <div class="svc-patent">🏅 特許取得済み</div>
+        <div class="svc-name">パシーズ <span>／ 処方箋遠隔入力</span></div>
+        <p class="svc-desc">チェーン薬局向け・処方箋遠隔入力サービス。薬剤師の入力業務を遠隔で分担し、現場スタッフが調剤に集中できる環境を実現。</p>
+        <ul class="svc-features">
+          <li>処方箋入力を遠隔で分担・効率化</li>
+          <li>入力ミスのリスクを低減</li>
+          <li>繁忙時間帯のオペレーション改善</li>
+        </ul>
+      </div>
     </div>
     <div class="service-card">
-      <div class="svc-spacer"></div>
-      <span class="svc-icon">🏥</span>
-      <div class="svc-name-en">Pharmotto</div>
-      <div class="svc-name-ja">ふぁーもっと ／ 医事代行</div>
-      <p class="svc-desc">調剤業務に専念できるよう、医事に関わる事務作業を代行。薬剤師の時間を本来の業務へ。採用コストの削減にも貢献します。</p>
-      <ul class="svc-features">
-        <li>医事事務作業の一括代行</li>
-        <li>薬剤師・スタッフの業務負担を軽減</li>
-        <li>採用・育成コストの削減をサポート</li>
-      </ul>
+      <div class="svc-img-wrap">
+        <img src="ふぁーもっと ／ 医事代行.jpg" alt="Pharmotto ふぁーもっと" class="svc-img" onerror="this.src='https://via.placeholder.com/600x300?text=Image'">
+      </div>
+      <div class="svc-content">
+        <div class="svc-spacer"></div>
+        <div class="svc-name">ふぁーもっと <span>／ 医事代行</span></div>
+        <p class="svc-desc">調剤業務に専念できるよう、医事に関わる事務作業を代行。薬剤師の時間を本来の業務へ。採用コストの削減にも貢献します。</p>
+        <ul class="svc-features">
+          <li>医事事務作業の一括代行</li>
+          <li>薬剤師・スタッフの業務負担を軽減</li>
+          <li>採用・育成コストの削減をサポート</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -1238,7 +1283,15 @@ footer {
 <section class="company-section" id="company">
   <div class="company-inner">
     <div class="company-left">
-      <div class="company-name">株式会社 OZ</div>
+      <div class="company-name-wrap">
+        <img src="rogo.png" alt="OZ" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <svg class="logo-svg" style="display:none;" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 11 29 A 14 14 0 1 1 22 34" stroke="#EEDD00" stroke-width="6" fill="none" />
+          <path d="M 34 12 L 52 12 L 34 34 L 52 34" stroke="#6CA95A" stroke-width="6" fill="none" stroke-linejoin="miter" />
+          <polygon points="44,9 55,9 49,17" fill="#EEDD00" />
+        </svg>
+        <span class="company-name-text">株式会社OZ</span>
+      </div>
       <div class="company-tagline">ゼロから、無限の夢へ。強く、やさしく、しなやかに。</div>
       <p class="company-about">
         2024年4月創業。代表・山田猛CEOは電機メーカーでのシステム営業から医療系ソフト代表を経て、保険薬局DXの課題に正面から向き合うために株式会社OZを立ち上げました。特許技術と現場視点を組み合わせ、薬局業界に本当に必要なソリューションを届け続けます。
