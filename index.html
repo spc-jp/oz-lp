@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社OZ｜薬剤師が、調剤に集中できる時代へ。</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* OZブランドカラー（ロゴ準拠） */
+  --green:     #3BAA3B;   /* Zのグリーン */
+  --green2:    #52C252;   /* ライトグリーン */
+  --yellow:    #C8D400;   /* Oの黄緑 */
+  --yellow2:   #E0EC00;   /* 明るめ黄緑 */
+  --cyan:      #00B8D4;   /* サイトのシアン（アイコン色） */
+
+  /* ダーク背景系 */
+  --dark:      #0B1A0B;   /* 深緑ほぼ黒 */
+  --dark2:     #111E11;
+  --dark3:     #162416;
+  --dark-mid:  #1C2E1C;
+
+  --white:     #FFFFFF;
+  --muted:     #7EA87E;
+  --border:    rgba(59,170,59,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ==================== NAVBAR ==================== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 48px;
+  background: rgba(11,26,11,0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(59,170,59,0.15);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-img {
+  height: 28px;
+  width: auto;
+}
+/* SVGロゴ（OZロゴ再現） */
+.logo-svg {
+  width: 52px;
+  height: 38px;
+}
+.nav-logo-text {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.04em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green2); }
+.nav-cta {
+  background: var(--green) !important;
+  color: white !important;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 700 !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+.nav-cta:hover { background: var(--green2) !important; transform: translateY(-1px); }
+
+/* ==================== HERO ==================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 140px 80px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 900px 600px at 65% 40%, rgba(59,170,59,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 500px 400px at 5% 75%, rgba(200,212,0,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 400px 300px at 90% 80%, rgba(0,184,212,0.1) 0%, transparent 55%),
+    linear-gradient(180deg, #0B1A0B 0%, #0F200F 60%, #0B1A0B 100%);
+  z-index: 0;
+}
+
+/* グリッドライン */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(59,170,59,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,170,59,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59,170,59,0.15);
+  border: 1px solid rgba(59,170,59,0.35);
+  color: var(--green2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--green2);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-title {
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+  animation: fadeUp 0.8s 0.15s ease forwards;
+  opacity: 0;
+}
+.hero-title .accent-green {
+  background: linear-gradient(90deg, var(--green2), var(--yellow2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-title .sub-line {
+  display: block;
+  color: rgba(255,255,255,0.48);
+  font-size: 0.6em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-top: 10px;
+}
+
+.hero-desc {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.95;
+  margin-bottom: 44px;
+  max-width: 540px;
+  animation: fadeUp 0.8s 0.3s ease forwards;
+  opacity: 0;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.45s ease forwards;
+  opacity: 0;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: white;
+  padding: 16px 36px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 32px rgba(59,170,59,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 42px rgba(59,170,59,0.55);
+}
+.btn-outline {
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  padding: 16px 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.btn-outline:hover {
+  background: #F0F0F0;
+  border-color: rgba(0,0,0,0.15);
+}
+
+.hero-stats {
+  position: relative;
+  z-index: 1;
+  margin-top: 64px;
+  display: flex;
+  justify-content: space-between;
+  animation: fadeUp 0.8s 0.6s ease forwards;
+  opacity: 0;
+  max-width: 760px;
+}
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+  padding: 0 20px;
+  border-right: 1px dashed rgba(0,0,0,0.1);
+}
+.stat-item:first-child { padding-left: 0; }
+.stat-item:last-child { border-right: none; padding-right: 0; }
+
+.stat-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(59,170,59,0.15), rgba(200,212,0,0.05));
+  border: 1px solid rgba(59,170,59,0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2), inset 0 0 8px rgba(200,212,0,0.05);
+  width: 96px;  /* 全てのバッジ幅を統一 */
+  height: 68px; /* 全てのバッジ高さを統一 */
+  flex-shrink: 0;
+}
+.stat-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--green2), var(--yellow2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  transform: translateY(2px);
+}
+.stat-unit {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-sub);
+  margin-left: 4px;
+  transform: translateY(8px);
+}
+.stat-label { 
+  font-size: 14px; 
+  color: var(--text-sub); 
+  line-height: 1.5;
+  font-weight: 700;
+  width: 120px; 
+  white-space: nowrap;
+}
+
+/* Floating card */
+.hero-visual {
+  position: absolute;
+  right: 64px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  animation: floatIn 1s 0.5s ease forwards;
+  opacity: 0;
+}
+.visual-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(59,170,59,0.2);
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(20px);
+  width: 310px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(59,170,59,0.08);
+}
+.vc-title {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+.vc-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.vc-item:last-child { border-bottom: none; }
+.vc-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.vc-icon.g  { background: rgba(59,170,59,0.2); }
+.vc-icon.y  { background: rgba(200,212,0,0.2); }
+.vc-icon.c  { background: rgba(0,184,212,0.2); }
+.vc-name { font-size: 13px; font-weight: 700; }
+.vc-sub  { font-size: 11px; color: var(--muted); }
+.vc-badge {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(200,212,0,0.18);
+  color: var(--yellow2);
+  border: 1px solid rgba(200,212,0,0.3);
+  white-space: nowrap;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(24px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+@keyframes floatIn {
+  from { opacity:0; transform: translateY(-42%) scale(0.95); }
+  to   { opacity:1; transform: translateY(-50%) scale(1); }
+}
+
+/* ==================== SECTION COMMON ==================== */
+section { padding: 100px 80px; }
+
+.section-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green2);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(26px, 3.5vw, 44px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.48);
+  font-weight: 300;
+  max-width: 500px;
+  line-height: 1.85;
+}
+
+/* ==================== PAIN ==================== */
+.pain-section {
+  background: var(--dark2);
+  border-top: 1px solid rgba(59,170,59,0.1);
+  border-bottom: 1px solid rgba(59,170,59,0.1);
+}
+.pain-header { text-align: center; margin-bottom: 60px; }
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 18px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.pain-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: all 0.3s;
+}
+.pain-card:hover {
+  background: rgba(59,170,59,0.07);
+  border-color: rgba(59,170,59,0.28);
+  transform: translateY(-3px);
+}
+.pain-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: rgba(59,170,59,0.1);
+  flex-shrink: 0;
+  line-height: 1;
+  width: 38px;
+}
+.pain-icon  { font-size: 22px; margin-bottom: 8px; }
+.pain-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.pain-desc  { font-size: 13px; color: rgba(255,255,255,0.48); line-height: 1.7; }
+
+.pain-arrow {
+  text-align: center;
+  padding-top: 52px;
+}
+.pain-arrow-text { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+.arrow-dn { font-size: 28px; animation: bounce 2s infinite; display: block; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+.pain-resolve {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: white;
+  font-size: 18px;
+  font-weight: 900;
+  padding: 20px 48px;
+  border-radius: 12px;
+  margin-top: 8px;
+  box-shadow: 0 8px 32px rgba(59,170,59,0.35);
+  letter-spacing: 0.02em;
+}
+
+/* ==================== SERVICES ==================== */
+.services-section { background: var(--dark); }
+.services-header { margin-bottom: 60px; }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 22px;
+}
+.service-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(59,170,59,0.1);
+  border-radius: 20px;
+  padding: 34px 26px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--yellow));
+  transform: scaleX(0);
+  transition: transform 0.35s;
+  transform-origin: left;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover {
+  background: rgba(59,170,59,0.06);
+  border-color: rgba(59,170,59,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.svc-patent {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(200,212,0,0.12);
+  border: 1px solid rgba(200,212,0,0.3);
+  color: var(--yellow2);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  letter-spacing: 0.06em;
+}
+.svc-spacer { height: 26px; margin-bottom: 20px; }
+.svc-icon {
+  font-size: 44px;
+  margin-bottom: 18px;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(59,170,59,0.3));
+}
+.svc-name-en {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+.svc-name-ja {
+  font-size: 13px;
+  color: var(--green2);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.svc-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.52);
+  line-height: 1.85;
+  margin-bottom: 22px;
+}
+.svc-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.svc-features li {
+  font-size: 13px;
+  color: rgba(255,255,255,0.68);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.svc-features li::before {
+  content: '✓';
+  color: var(--green2);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ==================== ACHIEVEMENTS ==================== */
+.achieve-section {
+  background: var(--dark2);
+  border-top: 1px solid rgba(59,170,59,0.1);
+  border-bottom: 1px solid rgba(59,170,59,0.1);
+}
+.achieve-inner {
+  display: flex;
+  gap: 72px;
+  align-items: flex-start;
+}
+.achieve-left, .achieve-right { flex: 1; }
+
+.timeline { display: flex; flex-direction: column; gap: 0; margin-top: 32px; }
+.tl-item { display: flex; gap: 18px; align-items: flex-start; }
+.tl-left { display: flex; flex-direction: column; align-items: center; }
+.tl-dot {
+  width: 12px; height: 12px;
+  background: var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(59,170,59,0.2);
+  margin-top: 4px;
+}
+.tl-line { width: 2px; flex: 1; min-height: 26px; background: rgba(59,170,59,0.15); }
+.tl-body { padding-bottom: 22px; }
+.tl-date { font-size: 11px; color: var(--green2); font-weight: 700; margin-bottom: 2px; letter-spacing: 0.08em; }
+.tl-text { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+.partner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 32px;
+}
+.partner-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(59,170,59,0.12);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s;
+}
+.partner-item:hover {
+  background: rgba(59,170,59,0.08);
+  border-color: rgba(59,170,59,0.3);
+}
+.partner-icon {
+  width: 36px; height: 36px;
+  background: rgba(59,170,59,0.15);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.partner-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.partner-type { font-size: 11px; color: var(--muted); }
+
+/* ==================== HOW ==================== */
+.how-section { background: var(--dark); }
+.how-header { text-align: center; margin-bottom: 60px; }
+
+.how-steps {
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.how-step {
+  flex: 1;
+  text-align: center;
+  padding: 0 18px;
+  position: relative;
+}
+.how-step::after {
+  content: '›';
+  position: absolute;
+  right: -8px; top: 22px;
+  font-size: 26px;
+  color: var(--green);
+  opacity: 0.4;
+}
+.how-step:last-child::after { display: none; }
+.how-circle {
+  width: 68px; height: 68px;
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  margin: 0 auto 18px;
+  box-shadow: 0 8px 24px rgba(59,170,59,0.35);
+}
+.how-step-num { font-size: 11px; color: var(--green2); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 8px; }
+.how-step-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.how-step-desc { font-size: 13px; color: rgba(255,255,255,0.48); line-height: 1.75; }
+
+/* ==================== VOICE ==================== */
+.voice-section {
+  background: linear-gradient(180deg, var(--dark2) 0%, var(--dark) 100%);
+}
+.voice-header { text-align: center; margin-bottom: 52px; }
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+.voice-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(59,170,59,0.1);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  transition: all 0.25s;
+}
+.voice-card:hover {
+  background: rgba(59,170,59,0.05);
+  border-color: rgba(59,170,59,0.25);
+}
+.voice-card::before {
+  content: '"';
+  position: absolute;
+  top: 14px; right: 22px;
+  font-family: 'Syne', sans-serif;
+  font-size: 72px;
+  color: rgba(59,170,59,0.12);
+  line-height: 1;
+}
+.voice-text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+.voice-author { display: flex; align-items: center; gap: 10px; }
+.voice-avatar {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, rgba(59,170,59,0.4), rgba(200,212,0,0.25));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.voice-name  { font-size: 12px; font-weight: 700; }
+.voice-role  { font-size: 11px; color: var(--muted); }
+
+/* ==================== CTA ==================== */
+.cta-section {
+  background: var(--dark3);
+  text-align: center;
+  padding: 120px 80px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(59,170,59,0.12);
+}
+.cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 900px 500px at 50% 50%, rgba(59,170,59,0.14) 0%, transparent 70%);
+}
+/* 背景ハニカム装飾 */
+.cta-section::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(59,170,59,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,170,59,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+}
+.cta-inner { position: relative; z-index: 1; }
+
+.cta-title {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.cta-title .cta-accent {
+  background: linear-gradient(90deg, var(--green2), var(--yellow2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.cta-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 48px;
+  font-weight: 300;
+  line-height: 1.9;
+}
+.cta-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-large { padding: 20px 48px; font-size: 16px; border-radius: 12px; }
+.cta-note { margin-top: 24px; font-size: 13px; color: rgba(255,255,255,0.3); }
+
+/* ==================== COMPANY ==================== */
+.company-section {
+  background: #080F08;
+  padding: 80px;
+  border-top: 1px solid rgba(59,170,59,0.08);
+}
+.company-inner {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.company-left { flex: 1.2; }
+.company-right { flex: 1; }
+.company-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.company-tagline {
+  font-size: 14px;
+  color: var(--green2);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.company-about {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.95;
+}
+.company-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.company-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.company-table td {
+  padding: 12px 0;
+  font-size: 13px;
+  vertical-align: top;
+}
+.company-table td:first-child { color: var(--muted); width: 80px; font-weight: 500; }
+.company-table td:last-child { color: rgba(255,255,255,0.8); }
+
+/* ==================== FOOTER ==================== */
+footer {
+  background: #040A04;
+  padding: 36px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(59,170,59,0.1);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-logo-wrap { display: flex; align-items: center; gap: 8px; }
+.footer-logo-text {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+}
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a {
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--green2); }
+.footer-copy { color: rgba(255,255,255,0.2); font-size: 12px; }
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 960px) {
+  .hero { padding: 120px 28px 80px; }
+  .hero-visual { display: none; }
+  section { padding: 72px 28px; }
+  .nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .services-grid,
+  .pain-grid,
+  .voice-grid { grid-template-columns: 1fr; }
+  .how-steps { flex-direction: column; align-items: center; }
+  .how-step::after { display: none; }
+  .achieve-inner,
+  .company-inner { flex-direction: column; gap: 44px; }
+  footer, .company-section, .cta-section { padding: 64px 28px; }
+  .hero-stats { flex-direction: column; gap: 20px; }
+  .stat-item { border: none; padding: 0; margin: 0; width: 100%; justify-content: flex-start; }
+  .stat-label { width: auto; }
+  .partner-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-logo">
+    <!-- 画像が読み込める場合は画像を表示し、読み込めない場合（プレビュー等）はSVGを表示 -->
+    <img src="rogo.png" alt="OZ" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <svg class="logo-svg" style="display:none;" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 11 29 A 14 14 0 1 1 22 34" stroke="#EEDD00" stroke-width="6" fill="none" />
+      <path d="M 34 12 L 52 12 L 34 34 L 52 34" stroke="#6CA95A" stroke-width="6" fill="none" stroke-linejoin="miter" />
+      <polygon points="44,9 55,9 49,17" fill="#EEDD00" />
+    </svg>
+    <span class="nav-logo-text">株式会社OZ</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#achieve">実績</a></li>
+    <li><a href="#how">導入の流れ</a></li>
+    <li><a href="#company">会社情報</a></li>
+    <li><a href="https://web.gogo.jp/cp17080360376191/form/contact" class="nav-cta">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      特許取得 × 2 プロダクト｜医療DXスタートアップ
+    </div>
+    <h1 class="hero-title">
+      薬剤師が、<br>
+      <span class="accent-green">調剤に集中できる</span><br>
+      時代へ。
+      <span class="sub-line">人手不足・業務過多を、<br>テクノロジーで解放する</span>
+    </h1>
+    <p class="hero-desc">
+      処方箋入力・服薬指導・医事業務を「遠隔」と「代行」で。<br>
+      チェーン薬局・保険薬局の経営課題に、株式会社OZが向き合います。
+    </p>
+    <div class="hero-btns">
+      <a href="https://web.gogo.jp/cp17080360376191/form/contact" class="btn-primary">
+        無料でお問い合わせ ›
+      </a>
+      <a href="#services" class="btn-outline">サービスを見る</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-badge">
+          <span class="stat-val">2</span><span class="stat-unit">件</span>
+        </div>
+        <div class="stat-label">特許取得済み<br>プロダクト</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-badge">
+          <span class="stat-val">4</span><span class="stat-unit">社+</span>
+        </div>
+        <div class="stat-label">提携・販売<br>パートナー</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-badge">
+          <span class="stat-val">3</span><span class="stat-unit">つ</span>
+        </div>
+        <div class="stat-label">薬局DX<br>ソリューション</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating product card -->
+  <div class="hero-visual">
+    <div class="visual-card">
+      <div class="vc-title">OZ プロダクトライン</div>
+      <div class="vc-item">
+        <div class="vc-icon g">💊</div>
+        <div>
+          <div class="vc-name">パッと薬 遠隔さん</div>
+          <div class="vc-sub">遠隔服薬指導システム</div>
+        </div>
+        <div class="vc-badge">特許取得</div>
+      </div>
+      <div class="vc-item">
+        <div class="vc-icon y">📋</div>
+        <div>
+          <div class="vc-name">Pas-IS（パシーズ）</div>
+          <div class="vc-sub">処方箋遠隔入力サービス</div>
+        </div>
+        <div class="vc-badge">特許取得</div>
+      </div>
+      <div class="vc-item">
+        <div class="vc-icon c">🏥</div>
+        <div>
+          <div class="vc-name">Pharmotto</div>
+          <div class="vc-sub">医事代行サービス</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain-section" id="pain">
+  <div class="pain-header">
+    <span class="section-tag">課題</span>
+    <h2 class="section-title" style="text-align:center;">
+      薬局の現場が<br>悲鳴をあげています
+    </h2>
+    <p class="section-sub" style="text-align:center; margin:0 auto;">
+      薬剤師不足・コスト削減・電子化義務化…。<br>
+      経営を圧迫する課題は、一向に解消されません。
+    </p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-num">01</div>
+      <div>
+        <div class="pain-icon">😔</div>
+        <div class="pain-title">薬剤師不足 × 業務過多</div>
+        <div class="pain-desc">処方箋入力・服薬指導・在庫管理…。少ないスタッフで全部こなす現場の限界は、いつ崩れてもおかしくない。</div>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">02</div>
+      <div>
+        <div class="pain-icon">📉</div>
+        <div class="pain-title">調剤報酬の削減圧力</div>
+        <div class="pain-desc">薬価差益が縮小し続け、コストを下げなければ経営が成り立たない時代。どこを削ればいいのか。</div>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">03</div>
+      <div>
+        <div class="pain-icon">💸</div>
+        <div class="pain-title">DX導入コストが高すぎる</div>
+        <div class="pain-desc">数百万円かけてもROIが出ない中小薬局。大手向けのシステムは、自分たちには合わない。</div>
+      </div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">04</div>
+      <div>
+        <div class="pain-icon">⚡</div>
+        <div class="pain-title">電子処方箋の義務化が加速</div>
+        <div class="pain-desc">2025年4月〜要件が厳格化。対応が遅れると加算が取れなくなる。備える時間が、もう残っていない。</div>
+      </div>
+    </div>
+  </div>
+  <div class="pain-arrow">
+    <div class="pain-arrow-text">そのすべてに、OZが応えます</div>
+    <span class="arrow-dn">↓</span>
+    <div style="margin-top:8px;">
+      <div class="pain-resolve">「調剤に集中できる環境」を、つくる。</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-header">
+    <span class="section-tag">サービス</span>
+    <h2 class="section-title">薬局DXを、3つのアプローチで</h2>
+    <p class="section-sub">特許技術と現場の知見をもとに、薬局が本来やるべき仕事に集中できる仕組みを提供します。</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-patent">🏅 特許取得済み</div>
+      <span class="svc-icon">💊</span>
+      <div class="svc-name-en">PATTO-ENKAKUSAN</div>
+      <div class="svc-name-ja">パッと薬 遠隔さん</div>
+      <p class="svc-desc">自店舗に来局した患者さまに対し、他店舗の薬剤師が遠隔でオンライン服薬指導を行えるシステム。チェーン薬局の「人員の偏り」を解消します。</p>
+      <ul class="svc-features">
+        <li>他店舗薬剤師が遠隔で服薬指導を実施</li>
+        <li>チェーン薬局の人材リソースを最適配置</li>
+        <li>処方箋対応スピードの大幅な改善</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="svc-patent">🏅 特許取得済み</div>
+      <span class="svc-icon">📋</span>
+      <div class="svc-name-en">Pas-IS</div>
+      <div class="svc-name-ja">パシーズ ／ 処方箋遠隔入力</div>
+      <p class="svc-desc">チェーン薬局向け・処方箋遠隔入力サービス。薬剤師の入力業務を遠隔で分担し、現場スタッフが調剤に集中できる環境を実現。</p>
+      <ul class="svc-features">
+        <li>処方箋入力を遠隔で分担・効率化</li>
+        <li>入力ミスのリスクを低減</li>
+        <li>繁忙時間帯のオペレーション改善</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="svc-spacer"></div>
+      <span class="svc-icon">🏥</span>
+      <div class="svc-name-en">Pharmotto</div>
+      <div class="svc-name-ja">ふぁーもっと ／ 医事代行</div>
+      <p class="svc-desc">調剤業務に専念できるよう、医事に関わる事務作業を代行。薬剤師の時間を本来の業務へ。採用コストの削減にも貢献します。</p>
+      <ul class="svc-features">
+        <li>医事事務作業の一括代行</li>
+        <li>薬剤師・スタッフの業務負担を軽減</li>
+        <li>採用・育成コストの削減をサポート</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achieve-section" id="achieve">
+  <div class="achieve-inner">
+    <div class="achieve-left">
+      <span class="section-tag">実績・ニュース</span>
+      <h2 class="section-title" style="font-size:clamp(22px,2.8vw,36px);">スタートアップながら、<br>着実な信頼実績</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-date">2025.10</div>
+            <div class="tl-text">株式会社ネグジット総研と『パッと薬遠隔さん』で協業開始</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-date">2025.08</div>
+            <div class="tl-text">株式会社遠興がサービス販売を開始</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-date">2025.07</div>
+            <div class="tl-text">医療機器メーカー・株式会社タカゾノがサービス販売を開始</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-date">2025.06</div>
+            <div class="tl-text">『パッと薬遠隔さん』（特許取得済み）をリリース</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <div class="tl-date">2024.11</div>
+            <div class="tl-text">「じほう社 PHARMACY NEWSBREAK」に掲載。Pas-IS リリース。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="achieve-right">
+      <span class="section-tag">販売・提携パートナー</span>
+      <h2 class="section-title" style="font-size:clamp(22px,2.8vw,36px);">信頼ある企業が<br>選ぶソリューション</h2>
+      <div class="partner-grid">
+        <div class="partner-item">
+          <div class="partner-icon">🏢</div>
+          <div>
+            <div class="partner-name">株式会社タカゾノ</div>
+            <div class="partner-type">医療機器メーカー</div>
+          </div>
+        </div>
+        <div class="partner-item">
+          <div class="partner-icon">🏥</div>
+          <div>
+            <div class="partner-name">株式会社遠興</div>
+            <div class="partner-type">医療資材提供</div>
+          </div>
+        </div>
+        <div class="partner-item">
+          <div class="partner-icon">🔬</div>
+          <div>
+            <div class="partner-name">NeoX株式会社</div>
+            <div class="partner-type">薬師丸賢太・AI協業</div>
+          </div>
+        </div>
+        <div class="partner-item">
+          <div class="partner-icon">📊</div>
+          <div>
+            <div class="partner-name">ネグジット総研</div>
+            <div class="partner-type">薬局経営コンサル</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-header">
+    <span class="section-tag">導入の流れ</span>
+    <h2 class="section-title" style="text-align:center;">シンプルな4ステップで<br>スタートできます</h2>
+  </div>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-circle">📞</div>
+      <div class="how-step-num">STEP 01</div>
+      <div class="how-step-title">お問い合わせ</div>
+      <div class="how-step-desc">フォームからご連絡ください。貴院の課題をお聞きします。</div>
+    </div>
+    <div class="how-step">
+      <div class="how-circle">🔍</div>
+      <div class="how-step-num">STEP 02</div>
+      <div class="how-step-title">ヒアリング・提案</div>
+      <div class="how-step-desc">現状と課題をもとに最適なプランをご提案します。</div>
+    </div>
+    <div class="how-step">
+      <div class="how-circle">🛠️</div>
+      <div class="how-step-num">STEP 03</div>
+      <div class="how-step-title">トライアル</div>
+      <div class="how-step-desc">まず小さく試せる形でご体験いただけます。</div>
+    </div>
+    <div class="how-step">
+      <div class="how-circle">🚀</div>
+      <div class="how-step-num">STEP 04</div>
+      <div class="how-step-title">本格導入・伴走</div>
+      <div class="how-step-desc">稼働後も継続サポート。現場に定着するまで一緒に走ります。</div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="voice-section">
+  <div class="voice-header">
+    <span class="section-tag">お客様の声</span>
+    <h2 class="section-title" style="text-align:center;">現場から、変化の声が届いています</h2>
+  </div>
+  <div class="voice-grid">
+    <div class="voice-card">
+      <p class="voice-text">「処方箋の入力に追われていた時間が大幅に減り、薬剤師が患者対応に集中できるようになりました。スタッフの表情が変わりましたね。」</p>
+      <div class="voice-author">
+        <div class="voice-avatar">💼</div>
+        <div>
+          <div class="voice-name">チェーン薬局 薬局長</div>
+          <div class="voice-role">東京都内・5店舗運営</div>
+        </div>
+      </div>
+    </div>
+    <div class="voice-card">
+      <p class="voice-text">「他店舗の薬剤師がリモートで指導に入れる仕組みは、人員配置の悩みを根本から解決してくれました。繁忙期の不安がなくなりました。」</p>
+      <div class="voice-author">
+        <div class="voice-avatar">🏥</div>
+        <div>
+          <div class="voice-name">保険薬局 経営者</div>
+          <div class="voice-role">神奈川県・3店舗運営</div>
+        </div>
+      </div>
+    </div>
+    <div class="voice-card">
+      <p class="voice-text">「医事代行に切り替えたことで採用コストが削減でき、薬剤師採用に集中できるようになりました。経営改善のスピードが上がっています。」</p>
+      <div class="voice-author">
+        <div class="voice-avatar">📊</div>
+        <div>
+          <div class="voice-name">調剤薬局 経営部長</div>
+          <div class="voice-role">大阪府・10店舗運営</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <span class="section-tag">Contact</span>
+    <h2 class="cta-title">
+      まず、話してみませんか。<br>
+      <span class="cta-accent">薬局の未来を、一緒に考えます。</span>
+    </h2>
+    <p class="cta-sub">
+      「うちの薬局に合うかな？」そのご相談から、OZはスタートします。<br>
+      資料請求・トライアルのご相談も、お気軽にどうぞ。
+    </p>
+    <div class="cta-btns">
+      <a href="https://web.gogo.jp/cp17080360376191/form/contact" class="btn-primary btn-large">
+        無料でお問い合わせ ›
+      </a>
+      <a href="https://www.oz-wa.co.jp/enkakusan" class="btn-outline btn-large">
+        遠隔さんの詳細を見る
+      </a>
+    </div>
+    <p class="cta-note">無料でのヒアリング・資料請求に対応しています</p>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="company-section" id="company">
+  <div class="company-inner">
+    <div class="company-left">
+      <div class="company-name">株式会社 OZ</div>
+      <div class="company-tagline">ゼロから、無限の夢へ。強く、やさしく、しなやかに。</div>
+      <p class="company-about">
+        2024年4月創業。代表・山田猛CEOは電機メーカーでのシステム営業から医療系ソフト代表を経て、保険薬局DXの課題に正面から向き合うために株式会社OZを立ち上げました。特許技術と現場視点を組み合わせ、薬局業界に本当に必要なソリューションを届け続けます。
+      </p>
+    </div>
+    <div class="company-right">
+      <table class="company-table">
+        <tr><td>会社名</td><td>株式会社 OZ</td></tr>
+        <tr><td>代表</td><td>代表取締役CEO　山田 猛</td></tr>
+        <tr><td>創業</td><td>2024年4月</td></tr>
+        <tr><td>所在地</td><td>〒160-0022<br>東京都新宿区新宿3-5-6<br>キュープラザ 6階</td></tr>
+        <tr><td>TEL</td><td>03-4400-4102</td></tr>
+        <tr><td>URL</td><td><a href="https://www.oz-wa.co.jp/" style="color:var(--green2);">www.oz-wa.co.jp</a></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-wrap">
+    <img src="rogo.png" alt="OZ" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <svg class="logo-svg" style="display:none;" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 11 29 A 14 14 0 1 1 22 34" stroke="#EEDD00" stroke-width="6" fill="none" />
+      <path d="M 34 12 L 52 12 L 34 34 L 52 34" stroke="#6CA95A" stroke-width="6" fill="none" stroke-linejoin="miter" />
+      <polygon points="44,9 55,9 49,17" fill="#EEDD00" />
+    </svg>
+    <span class="footer-logo-text">株式会社OZ</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="https://www.oz-wa.co.jp/privacy-policy">プライバシーポリシー</a></li>
+    <li><a href="https://www.oz-wa.co.jp/security-policy">セキュリティ方針</a></li>
+    <li><a href="https://web.gogo.jp/cp17080360376191/form/contact">お問い合わせ</a></li>
+  </ul>
+  <div class="footer-copy">© 2024 OZ Inc. All Rights Reserved.</div>
+</footer>
+
+</body>
+</html>
